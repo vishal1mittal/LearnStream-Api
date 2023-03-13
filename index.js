@@ -6,6 +6,11 @@ dotenv.config();
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
 
 const videoSchema = new mongoose.Schema({
